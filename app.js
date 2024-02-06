@@ -1,20 +1,34 @@
+var root = document.querySelector(":root");
+var rootStyles = getComputedStyle(root);
 
+var xAxis = rootStyles.getPropertyValue("--xAxis");
+var yAxis = rootStyles.getPropertyValue("--yAxis");
 
-document.addEventListener("keydown", event =>{
-    event = event;
-    let charCode = event.keyCode;
+console.log("X axis: ", xAxis);
+console.log("y axis: ", yAxis);
 
-    //console.log(charCode);
+document.addEventListener("keydown", (event) => {
+  event = event;
+  let charCode = event.keyCode;
 
-    const activeKey = document.querySelectorAll('.k' + charCode);
+  //console.log(charCode);
 
-    //console.log(activeKey);
+  const activeKey = document.querySelectorAll(".k" + charCode);
 
-        activeKey.forEach(activeKey => {
-                document.querySelector('.active')?.classList.remove('active');
-                activeKey.classList.add('active');
-            })
+  //console.log(activeKey);
 
-})
+  activeKey.forEach((activeKey) => {
+    document.querySelector(".active")?.classList.remove("active");
+    activeKey.classList.add("active");
+  });
 
+  randomLoc();
+});
 
+function randomLoc() {
+  let xAxis = Math.floor(Math.random() * 400) + "px";
+  let yAxis = Math.floor(Math.random() * 400) + "px";
+
+  root.style.setProperty("--xAxis", xAxis);
+  root.style.setProperty("--yAxis", yAxis);
+}
